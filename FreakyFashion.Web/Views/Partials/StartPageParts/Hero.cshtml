@@ -1,0 +1,22 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var image = Model.Value<IPublishedContent>("heroImage");
+}
+
+<h1 class="text-center text-danger">@Model.Value("titlePage")</h1>
+
+
+<div class="row hero">
+    <div class="col-md-4 heroTextBox">
+     
+        <h1 class="title">@Model.Value("heroTitle")</h1>
+        
+        <p class="textbox-wrapper">
+            @Model.Value("heroDescription")
+        </p>
+        <button class="col-12 btn btn-primary btnHero">@Model.Value("heroButton")</button>
+    </div>
+    <div class="col-md-8 imageBoxHero">
+        <img class="col-10 imageHero" src="@image.Url()" alt="@image.Name" />
+    </div>

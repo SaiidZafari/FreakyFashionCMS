@@ -1,0 +1,37 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Products>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    var productColection = Model.Value<IPublishedContent>("productsPicker").Children;
+}
+
+
+<div class="row">
+    @if (productColection.Any())
+    {
+        @foreach (var product in productColection)
+        {
+            var image = product.Value<IPublishedContent>("productImage");
+            <a class="col-md-3 homeProductText" href="/products/@product.UrlSegment()">
+                <div>
+                    <div class="image ">
+
+                        <img class="img-fluid rounded-3" src="@image.Url()" />
+                    </div>
+                    <div class="priceText">
+                        <h5>@product.Value("productName")</h5>
+                        <h5>@product.Value("productPrice")</h5>
+                    </div>
+
+
+                </div>
+            </a>
+        }
+    }
+    else
+    {
+        <h1>There are Not any products available...</h1>
+    }
+
+</div>

@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+
+    var productColection = Model.Value<IPublishedContent>("homePicker").Children;
+}
+
+<h2 class="text-center mt-2 mb-2">@Model.Value("titleFree")</h2>
+<hr />
+<div class="row">
+    @if (productColection.Any())
+    {
+        @foreach (var product in productColection)
+        {
+            var image = product.Value<IPublishedContent>("productImage");
+
+            <a class="col-md-3 homeProductText" href="/products/@product.UrlSegment()">
+                <div>
+                    <div class="image ">
+
+                        <img class="img-fluid rounded-3" src="@image.Url()" />
+                    </div>
+                    <div class="priceText">
+                        <h5>@product.Value("productName")</h5>
+                        <h5>@product.Value("productPrice")</h5>
+                    </div>
+                </div>
+            </a>
+        }
+    }
+</div>

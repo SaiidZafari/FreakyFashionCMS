@@ -1,0 +1,26 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    @*@Model.Value("spotsTitle")
+        @Model.Value("spotsImage")
+        @Model.Value("spotsHome")*@
+
+var spotsElements = Model.Value<IEnumerable<IPublishedElement>>("spotsHome");
+var num = 1;
+//var statisticsContentEnumerable = Model.Value<IEnumerable<IPublishedElement>>("statistics");
+}
+
+
+<div class="row mt-3 SpotsBox">
+    @foreach (var spot in spotsElements)
+    {
+        var imageSpot = spot.Value<IPublishedContent>("SpotsImage");
+        <div class="col-md-4">
+            <h3 class="spotsText-@num text-center">@spot.Value("SpotsTitle")</h3>
+            <img class="col-md-12 spotsImage rounded-3" src="@imageSpot.Url()" />
+        </div>
+        num++;
+    }
+
+
+</div>

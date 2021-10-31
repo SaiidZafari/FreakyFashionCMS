@@ -1,0 +1,13 @@
+
+.headersBox {
+    /*background-color: aquamarine;*/
+    padding: 1%;
+    justify-items: center;
+    align-items: center;
+    justify-content:space-between;
+}
+.logoLabel{
+    font-size:x-large;
+    font-weight:bold;
+    /*margin-left:10%;*/
+}

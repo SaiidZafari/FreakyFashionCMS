@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<div class="container d-flex flex-wrap justify-content-center eyeBox">
+    <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none ">       
+        <h1 class="fs-3">@Model.Value("projectTitle")</h1>
+    </a>
+
+    <form action="Search" class="col-12 col-lg-auto mb-3 mb-lg-0 eyeBox">
+
+        @*<img class="eye" src="~/Images/eye.png" />*@
+        <input type="search" class="form-control searchBox" placeholder="Search..." aria-label="Search" name="q">
+
+    </form>
+</div>
+<h5 class="container text-info">@Model.Value("pageTitle")</h5>

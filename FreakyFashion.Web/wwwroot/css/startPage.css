@@ -1,0 +1,58 @@
+
+.hero {
+    margin-top: 2%;
+    border: 2px solid black;
+    border-radius:10px 10px 15px 0px;
+}
+
+.heroTextBox {
+    padding: 2%;
+}
+.btnHero{
+  margin-top:15%;
+}
+
+.imageBoxHero {
+    height: 100;
+    padding: 0.5%;
+}
+
+.imageHero {
+    width: 100%;
+    border-radius: 10px 10px 15px 0px;
+}
+.homeProductText{
+    color:darkred;
+    text-decoration:none;
+}
+.eyeBox{
+    display:flex;
+
+}
+.eye{
+  width:20%;
+}
+.searchBox{
+   height:40px;
+}
+.priceText{
+    display:flex;
+    justify-content:space-between;
+}
+.spotsText-1, .spotsText-2, .spotsText-3 {    
+    position: absolute;
+    bottom: -12%;
+}
+
+.spotsText-1 {
+    color: #ff6a00;
+    left: 15%;
+}
+.spotsText-2 {
+    color: #ff6a00;
+    left: 40%;
+}
+.spotsText-3 {
+    color: #ff6a00;
+    left: 68%;
+}

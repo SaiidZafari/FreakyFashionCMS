@@ -1,0 +1,72 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Search>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IPublishedContentQuery _publishedContentQuery
+
+@{
+    Layout = "Master.cshtml";
+ }
+
+@{
+    var searchQuery = HttpContextAccessor.HttpContext.Request.Query["q"];
+
+    var productColection = Model.Value<IPublishedContent>("productsPicker").Children;
+
+    var num = 0;
+}
+
+<div class="row">
+
+    <div class="col-md-10">
+
+        @foreach (var result in productColection)
+        {
+            var image = result.Value<IPublishedContent>("productImage");
+
+            @if (String.IsNullOrEmpty(searchQuery))
+            {
+                <a class="row mb-3 homeProductText" href="/products/@result.UrlSegment()">
+                    <div class="col-md-2">
+                        <img class="col-md-9" src="@image.Url()" />
+                    </div>
+                    <div class="col-md-9">
+                        <h5 class="text-danger">@result.Value("productName")</h5>
+                        <p class="short-description text-dark"> @result.Value("productDescription") </p>
+                        <h5 class="text-reset"> @result.Value("productPrice") </h5>
+                    </div>
+                </a>
+                num = num + 1;
+            }
+            else
+            {
+               
+                if (@result.Value("productName").ToString().Contains(@searchQuery))
+                {
+
+                    <a class="row mb-3 homeProductText" href="/products/@result.UrlSegment()">
+                        <div class="col-md-2">
+                            <img class="col-md-9" src="@image.Url()" />
+                        </div>
+                        <div class="col-md-9">
+                            <h5 class="text-danger">@result.Value("productName")</h5>
+                            <p class="short-description text-dark"> @result.Value("productDescription") </p>
+                            <h5 class="text-reset"> @result.Value("productPrice") </h5>
+                        </div>
+                    </a>
+                    num = num + 1;
+                }
+            }
+        }
+
+    </div>
+        <div class="resultText col-md-2 btn btn-primary">
+            <h5>Search Term </h5>
+            <h5>@searchQuery</h5>
+            <h5>Number of Result</h5>
+            <h5>@num</h5>
+        </div>
+    
+</div> 
