@@ -1,6 +1,63 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
-<div class="container footerDiv">
+@{
+    @*@Model.Value("footerLinks")
+        @Model.Value("footerIconLabel")
+        @Model.Value("footerListIcon")
+        @Model.Value("footerListImage")
+        @Model.Value("footerListTitle")
+        @Model.Value("footers")*@
+
+var footerColection = Model.Value<IEnumerable<IPublishedElement>>("footers");
+
+var listCol = Model.Value<IEnumerable<IPublishedElement>>("footerLinks");
+}
+
+@*<div class="container mt-3 mb-3 footerDiv">
+    <div class="col-md-12 row services">
+        @foreach (var item in footerColection)
+        {
+            var listsImag = item.Value<IPublishedContent>("footerListImage");
+
+            var theColection = item.Value<IEnumerable<IPublishedElement>>("footerLinks");
+
+            var theLinks = theColection.Select(c => c.Value("LinkNavigation"));
+
+            <div class="col-md-3 service">
+                <h5></h5>
+                <div>
+                    <img class="col-md-3" src="@listsImag.Url()" alt="Accept">
+                    <span> @item.Value("footerIconLabel")</span>
+                </div>
+
+                <ul class="navbar-nav">
+                    <li>@item.Value("footerListTitle")</li>
+                    @foreach (var linkNav in theLinks.Select(s => s))
+                    {
+                        //var linkx = linkNav.Value<IEnumerable<IPublishedElement>>("LinkNavigation");
+                        
+
+                <li><a href="https://www.google.dk/"></a>@linkNav</li>
+
+                    }
+                </ul>
+
+
+
+            </div>
+        }
+
+    </div>
+</div>*@
+
+
+
+
+
+
+
+
+<div class="container mt-3 mb-3 footerDiv">
         <div class="col-md-12 row services">
 
             <div class="col-md-3 service">
@@ -53,6 +110,6 @@
     </div>
     <div class="border-top  footer-copyright py-3 text-center">
         <div class="container-fluid">
-            © Freaky Fashion 2021. All rights reserved.
+            @Model.Value("footerCopyright")
         </div>
     </div>

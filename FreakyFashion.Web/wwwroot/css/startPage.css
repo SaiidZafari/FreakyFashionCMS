@@ -1,8 +1,18 @@
-
+:root {
+    --font: 1.5rem;
+    --Line: calc(var(--font) * 2);
+    --move: calc(-1 * var(--Line));
+    --content: calc ( ((100vw - 4rem)/3));
+}
+.homeTitle {
+    font-family: Edwardian Script ITC;
+    font-size: 46px;
+    font-weight:bold;
+}
 .hero {
     margin-top: 2%;
     border: 2px solid black;
-    border-radius:10px 10px 15px 0px;
+    border-radius: 10px 10px 15px 0px;
 }
 
 .heroTextBox {
@@ -39,14 +49,43 @@
     display:flex;
     justify-content:space-between;
 }
-.spotsText-1, .spotsText-2, .spotsText-3 {    
-    position: absolute;
-    bottom: -12%;
+/*.spotsBox {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);*/
+    /*grid-template-columns: repeat(3, calc(((100vw - 4rem)/3)));*/
+    /*grid-gap: 1rem;
+    grid-template-rows: auto;
+    margin: 1rem 0;
+    padding: 0 1rem;
+}*/
+.spotsContent {
+    border:none;
+}
+/*.spotsContent > image {
+   width: 100%;
+    height: auto;
+    display: block;
+}*/
+.spotsText {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    padding: 0 1rem;
+    margin: 0;
+    color: white;
+    background-color: hsla(0, 0%, 0%, 0.48);
+    height:3rem;
+    margin-top:6rem;
+    position:relative;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-.spotsText-1 {
+/*.spotsText-1 {
     color: #ff6a00;
-    left: 15%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .spotsText-2 {
     color: #ff6a00;
@@ -55,4 +94,4 @@
 .spotsText-3 {
     color: #ff6a00;
     left: 68%;
-}
+}*/
