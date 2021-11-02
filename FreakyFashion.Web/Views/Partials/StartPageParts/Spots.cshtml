@@ -12,15 +12,19 @@
     @foreach (var spot in spotsElements)
     {
         var imageSpot = spot.Value<IPublishedContent>("SpotsImage");
-        <div class="col-md-4 card  text-white spotsContent">
+
+
+        <a href="/products/@spot.Value("SpotsTitle")" class="col-md-4 card  text-white spotsContent">
 
             <img class="spotsImage rounded-3" src="@imageSpot.Url()" />
             <div class="card-img-overlay">
-                <p class="spotsText card-title text-center justify-center">@spot.Value("SpotsTitle")</p>
+                <p class="spotsText card-title text-center justify-center">@spot.Value("SpotsMessage")</p>
             </div>
-        </div>
+        </a>
         num++;
+        
     }
+
 
 
 </div>

@@ -1,8 +1,97 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ShoppingCart>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IPublishedContentQuery _publishedContentQuery
+
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
+ }
+
+@{
+    var searchQuery = HttpContextAccessor.HttpContext.Request.Query["q"];
+
+    var productColection = Model.Value<IPublishedContent>("productsPicker").Children;
+
+    var num = 0;
+    var total = 0;
+    var total1 = 0;
 }
 
-@await Html.PartialAsync("Shopping/ShoppingList")
+<div class="row">
+   
+    <div class="col-md-10">
+        <div class="col-md-12 row mb-3">
+            <h5 class="text-reset text-center col-md-2">Image</h5>
+            <h5 class="text-reset  col-md-2">Name</h5>
+            <h5 class="text-reset text-center col-md-2">Number </h5>
+            <h5 class="text-reset text-center col-md-2">ProductPrice </h5>
+        </div>
+
+        @*<hr />*@
+
+
+        @foreach (var result in productColection)
+        {
+            var image = result.Value<IPublishedContent>("productImage");
+            <hr />
+            @if (String.IsNullOrEmpty(searchQuery))
+            {
+                <a class="row mb-3 homeProductText" href="/products/@result.UrlSegment()">
+                    <div class="col-md-2">
+                        <img class="img-fluid col-md-9" src="@image.Url()" />
+                    </div>
+
+                    <div class="col-md-9 row">
+                        <h5 class="text-danger col-md-3">@result.Value("productName")</h5>
+                        <h5 class="text-reset text-center col-md-2">1 </h5>
+                        @*<p class="short-description text-dark"> @result.Value("productDescription") </p>*@
+                        <h5 class="text-reset text-center col-md-3"> @result.Value("productPrice") SEK </h5>
+                    </div>
+                </a>
+                num = num + 1;
+                total1 = Int32.Parse(@result.Value("productPrice").ToString());
+                total = total + total1;
+
+
+            }
+            else
+            {
+
+                if (@result.Value("productName").ToString().Contains(@searchQuery))
+                {
+
+                    <a class="row mb-3 homeProductText" href="/products/@result.UrlSegment()">
+                        <div class="col-md-2">
+                            <img class="img-fluid col-md-9" src="@image.Url()" />
+                        </div>
+                        <div class="col-md-9">
+                            <h5 class="text-danger">@result.Value("productName")</h5>
+                            <p class="short-description text-dark"> @result.Value("productDescription") </p>
+                            <h5 class="text-reset"> @result.Value("productPrice") </h5>
+                        </div>
+                    </a>
+                    num = num + 1;
+
+
+                }
+
+            }
+        }
+
+    </div>
+    <div class="resultText col-md-2 btn btn-primary">
+        <h4 class="text-warning">Your Items</h4>
+        <hr />
+        @*<h4>Search Term </h4>
+        <h6 class="text-warning">@(!string.IsNullOrEmpty(searchQuery) ? searchQuery : "Try a new Term ..." )</h6>*@
+        <h4>Total Price</h4>
+        <h4 class="text-warning">@total</h4>
+        <hr />
+        <h4>Number of items</h4>
+        <h4 class="text-warning">@num</h4>
+    </div>
+
+</div> 

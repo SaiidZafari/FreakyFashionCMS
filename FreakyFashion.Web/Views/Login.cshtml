@@ -1,4 +1,9 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Login>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
 
 @using Microsoft.AspNetCore.Http.Extensions
 @using Umbraco.Cms.Web.Common.Models
@@ -18,7 +23,8 @@
 <div class="login-form col-md-4">
 
     @using (Html.BeginUmbracoForm<UmbLoginController>(
-        "HandleLogin", new { RedirectUrl = loginModel.RedirectUrl })) {
+       "HandleLogin", new { RedirectUrl = loginModel.RedirectUrl }))
+    {
 
         <h4>Log in with a local account.</h4>
         <hr />
@@ -40,7 +46,7 @@
             </label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Log in</button>
+        <button href="/register" type="submit" class="btn btn-primary col-md-6">Log in</button>
     }
 
 </div>

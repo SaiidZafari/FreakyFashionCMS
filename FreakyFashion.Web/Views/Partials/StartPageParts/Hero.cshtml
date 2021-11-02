@@ -15,7 +15,7 @@
         <p class="textbox-wrapper">
             @Model.Value("heroDescription")
         </p>
-        <button class="col-12 btn btn-primary btnHero">@Model.Value("heroButton")</button>
+        <a class="col-12 btn btn-primary btnHero" href="@Model.Value("heroButton")">Show all @Model.Value("heroButton")</a>
     </div>
     <div class="col-md-8 imageBoxHero">
         <img class="col-10 imageHero" src="@image.Url()" alt="@image.Name" />
