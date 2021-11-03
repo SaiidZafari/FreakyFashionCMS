@@ -43,7 +43,7 @@
             else
             {
                
-                if (@result.Value("productName").ToString().Contains(@searchQuery))
+                if (@result.Value("productName").ToString().ToLower().Contains(@searchQuery))
                 {
 
                     <a class="row mb-3 homeProductText" href="/products/@result.UrlSegment()">

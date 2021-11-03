@@ -8,9 +8,9 @@
         @Model.Value("footerListTitle")
         @Model.Value("footers")*@
 
-var footerColection = Model.Value<IEnumerable<IPublishedElement>>("footers");
+    var footerColection = Model.Value<IEnumerable<IPublishedElement>>("footers");
 
-var listCol = Model.Value<IEnumerable<IPublishedElement>>("footerLinks");
+    // var listCol = Model.Value<IEnumerable<IPublishedElement>>("footerLinks");
 }
 
 @*<div class="container mt-3 mb-3 footerDiv">
@@ -19,12 +19,21 @@ var listCol = Model.Value<IEnumerable<IPublishedElement>>("footerLinks");
         {
             var listsImag = item.Value<IPublishedContent>("footerListImage");
 
-            var theColection = item.Value<IEnumerable<IPublishedElement>>("footerLinks");
+            //var theColection = item.Value<IEnumerable<IPublishedElement>>("");
+           // var footerLinkes = item.Value<IPublishedContent>("footerLinks");
+            var footerLinks = item.Value<IEnumerable<IPublishedElement>>("footerLinks").FirstOrDefault();
 
-            var theLinks = theColection.Select(c => c.Value("LinkNavigation"));
+            //footerLinks.Value
+
+            var title = footerLinks?.Value("linkTitle");
+
+            var links = footerLinks?.Value<IEnumerable<Umbraco.Cms.Core.Models.Link>>("linkNavigation")
+                ?? Enumerable.Empty<Umbraco.Cms.Core.Models.Link>();
+
+          
 
             <div class="col-md-3 service">
-                <h5></h5>
+
                 <div>
                     <img class="col-md-3" src="@listsImag.Url()" alt="Accept">
                     <span> @item.Value("footerIconLabel")</span>
@@ -32,27 +41,25 @@ var listCol = Model.Value<IEnumerable<IPublishedElement>>("footerLinks");
 
                 <ul class="navbar-nav">
                     <li>@item.Value("footerListTitle")</li>
-                    @foreach (var linkNav in theLinks.Select(s => s))
+
+                    @foreach (var link in links)
                     {
-                        //var linkx = linkNav.Value<IEnumerable<IPublishedElement>>("LinkNavigation");
-                        
-
-                <li><a href="https://www.google.dk/"></a>@linkNav</li>
-
+                        <li>
+                            <a href="@link.Url">
+                                @link.Name
+                            </a>
+                        </li>
                     }
+
                 </ul>
-
-
-
             </div>
         }
 
     </div>
+
 </div>*@
 
 
-
-<h1></h1>
 
 
 
@@ -108,9 +115,12 @@ var listCol = Model.Value<IEnumerable<IPublishedElement>>("footerLinks");
             </span>
         </div>
     </div>
-    <div class="border-top  footer-copyright py-3 text-center">
-        <div class="container-fluid">
-            @Model.Value("footerCopyright")
-            @*© Freaky Fashion 2021. All rights reserved.*@
-        </div>
+
+
+
+<div class="border-top  footer-copyright py-3 text-center">
+    <div class="container-fluid">
+        @* @Model.Value("footerCopyright")*@
+        © Freaky Fashion 2021. All rights reserved.
     </div>
+</div>

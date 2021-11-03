@@ -40,7 +40,15 @@
 
 }
 .eye{
-  width:20%;
+  width:100%;
+  
+}
+.searchIconBox {
+    width: 60px;
+    height: 60px;
+    position:relative;
+    left:88%;
+    bottom:10%;
 }
 .searchBox{
    height:40px;
